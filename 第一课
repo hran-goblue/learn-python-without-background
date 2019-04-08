@@ -1,0 +1,14 @@
+### 第一课 ###
+
+### print()将结果打印出来
+
+>>> print ('hello world')
+hello world
+
+>>>print (5+8)
+13
+
+>>>print ('university of michigan'+' go blue')
+univeristy of michigan go blue
+
+### 也可以 print（‘字符串’*3） -- 打印3次
