@@ -265,3 +265,96 @@ true
 >>>tuple1
 (1,2,3,0,4,5,6)                --- 原来的tuple已经不在了
 
+
+
+________________
+### 第十课 ###
+————————————————
+--- 字符串 ---
+字符串就像单字符组成的元组
+也可以切片 [:]
+可以索引
+比较操作符、逻辑操作符、成员操作符(in\not in)都可以使用。
+
+--- 字符串的方法 ---
+>>> xx = 'xiao xie'
+
+xx.capitalize()                               --- 开头字母变大写。xx.capitalize(); xx='Xiao xie'
+xx.casefold()                                 --- 所有字符改小写
+xx.center(width)                              --- 居中，width使用空格填充至长度为width的新字符串。
+xx.count(sub,[,start[,end]])                  --- 返回sub在字符里出现的次数，start和end 表示范围。
+xx.encode(encoding ='utf-8',errors='stricts') --- 以encoding制定的编码格式对字符串进行编码
+xx.endwith(sub[,start[,end]])                 --- 检查字符是否以sub结尾，返回true或者false
+xx.expandtab([tabsize = 8])                   --- 把字符串中的\转换为空格，默认值为8
+xx.find(sub[,start[,end]])                    --- 检查是否含有字符sub如果有就返回他的索引值，没有就返回-1
+xx.index(sub[,start[,end]])                   --- 返回字符sub的索引值，如果没有会出错
+xx.isalnum()                                  --- 检查字符串是否含用字符（字母或数字）,空格不算字符。
+xx.isalpha()                                  --- 检查字符是否都是字母
+xx.islower()                                  --- 检查字符串是否都是小写字母
+xx.isdecimal()                                --- 检查字符串是否都是十进制数字
+xx.isdigit()                                  --- 检查字符是否都是数字
+xx.isnumeric()                                --- 检查字符串是否只包含数字(目前我还不知道和isdecimal有什么区别)
+xx.isdecimal()                                --- 检查字符串是否都是十进制数字
+xx.isspance()                                 --- 检查字符串是不是只包含空格
+xx.istitle()                                  --- 检查字符是否所有单词都是开头大写（像标题一样）
+xx.isupper()                                  --- 检查字符是否都是大写
+xx.join(sub)                                  --- 以字符串作为分隔符，插入到sub中所有的字符之间
+xx.ljust(width)                               --- 左对齐
+xx.lower()                                    --- 全部字符转换为小写
+xx.strip([char])                              --- 去除前后指定字符，默认为空格  
+xx.lstrip()                                   --- 去掉字符串左边的所有空格
+xx.partition(sub)                             --- 找到字符sub，并把整个字符串以sub分为前中后三部分
+xx.replace(old,new[,count])                   --- 把字符串中的old子字符串替换为new，替换不超过count次
+xx.rfind(sub[,start[,end]])                   --- 从右边开始查找
+xx.split(sep=None,maxsplit=-1)                --- 默认以空格为条件切片
+xx.spiltlines()                               --- 按照‘\n’切片
+xx.startwith(sub[,start[,end]]))              --- 检查是否以sub开头
+xx.swapcase()                                 --- 翻转大小写
+xx.zfill(width)                               --- 右对齐，前面用0填充至width
+xx.translate(table)                           --- 根据table规则转换字符,用str.maketrans('a','b')制定转换表
+
+--- 字符串格式化 ---
+>>> '{0}aaa{1}bbb{3}ccc'.format('A','B','C')
+AaaaBbbbCccc
+>>> '{a}qqq{b}eee{c}rrr'.format(a ='A',b= 'B',c = 'C')
+AqqqBeeeCrrr                                               --- 可以把位置参数和关键字参数混合使
+                                                           --- 但是位置位置参数必须在关键字之前
+>>> '{0:.1f}{1}'.format(27.456,'GB')
+'27.5GB'                          --- ":"表示格式化符号的开始,.1表示保留一位，f浮点数（四舍五入）,{1}位置参数
+
+--- 格式化字符 % ---
+>>> '%s %s %s' % (a,b,c)
+a b c
+还有 %c, %d, %o, %x, %X, %f, %e, %E, %g, %G
+
+--- 辅助指令 ---
+m.n 最小总长度m，n位小数
+-   --- 左对齐。
++   --- 在正数前显示 +
+0   --- 用0代替空格
+#   --- 八进制前面显示0x
+
+--- 转义符 \ ---
+\'    --- '
+\"    --- "
+\\    --- \
+\a系统警报，\b退格，\n换行，\t横向制表，\v纵向制表，\r回车，\f换页，\o八进制，\x十六进制，\0 空字符
+
+
+
+________________
+### 第十一课 ###
+————————————————
+--- 序列 ---
+list, tuple, string都可以算作是序列，所以他们有
+共同点 --- 有索引值，从0开始，可以切片，有很多共同操作符
+--- 几个函数 ---
+list(), tuple(), max(), min(), len(), sum(),
+sorted(), reversed(), enumerate(), zip()
+
+>>> a = [a, b, c, d, e, f]
+>>> b = [1, 2, 3, 4]
+>>> list( enumerate(a) )
+[(o,a),(1,b),(2,c),(3,d)]
+>>> list( zip(a,b) )
+[(a,1),(b,2),(c,3),(d,4)]
