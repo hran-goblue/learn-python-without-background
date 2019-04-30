@@ -358,3 +358,188 @@ sorted(), reversed(), enumerate(), zip()
 [(o,a),(1,b),(2,c),(3,d)]
 >>> list( zip(a,b) )
 [(a,1),(b,2),(c,3),(d,4)]
+
+
+______________
+### 第十二课 ###
+——————————————
+--- 函数 ---
+创建 --- 函数用 def 函数名():    --- 不要忘记括号和冒号
+调用 --- 函数名()
+实现原理 --- 调用函数 --> 往上寻找，执行函数内所有代码
+函数的参数 --- def 函数名(参数):
+               eg: >>>def myfunction(name):
+                   >>>   print(name + 'abc')
+                   >>>myfunction(ABC)
+                   ABCabc
+--- 参数 ---
+形式参数(parameter):函数创建过程中括号中的参数
+实际参数(argument) :函数在调用过程中传递进去的参数
+
+--- 文档 --- 
+>>> def myfunction():
+    '我的函数'
+    print('myfunction')
+>>>myfunction()
+myfunction
+>>>myfunction.__doc__   --- doc前后都是双下横线
+'我的函数'
+>>>help(myfunction)
+
+--- 关键字参数 ---
+>>>def saysome(name,word)
+        print(name --> word)
+>>> saysome(A,B)
+A-->B
+>>>saysome(word = 'A', name = 'B')  
+B-->A                                   --- 关键字参数可以消除参数输入循序混乱带来的输入错误
+
+--- 默认参数 ---
+定义了默认值的参数
+>>>def saysome ( name = 'A', word ='B')
+      print (name --> word）
+>>>saysome()
+A-->B                                   --- name & word 有了默认的参数，这时调用函数时如果不输入参数也不会报错
+
+--- 收集参数（可变参数）---
+创建函数时也不知道需要几个参数
+>>> def test(*params):                    --- 参数前加*号，如果第一个参数是收集参数，后边的参数必须要用关键字参数或者默认参数，
+                                               否则python会默认后边的都是收集参数
+        print ('参数的长度是'，len(params));
+        print ('第二个参数是'params[1]);
+>>> test (1,3.14,'天')
+参数的长度是3
+第二个参数是3.14
+
+________________
+### 第十三课 ###
+————————————————
+函数(function)  ：是有返回值的
+过程(proccesure)：简单的，特殊的并且没有返回值的
+python严格的说只有函数没有过程
+
+>>>def hello()
+        print('hello world')
+>>>temp = hello()
+hello world
+>>>temp              --- 没有返回任何结果
+>>>print(temp)
+None                 ---就算hello()没有写return语句，python也会返回none，所以说python的所有函数都会返回一个值
+>>>type(temp)
+<class 'none type'>
+
+--- return的用处 ---
+>>>def hello()
+        return('hello world')
+>>>temp = hello()
+hello world
+>>>temp      
+hello world          --- 用return就会存在返回值
+>>>print(temp)
+hello world         
+>>>type(temp)
+<class 'str'>
+
+--- 变量的作用域 ---
+全局变量(global)
+局部变量(local)
+
+--- 局部变量 ---
+>>>def discount(price,rate):
+       final_price = price * rate               --- final_price 被定义为local变量，出了discount()这个函数的域，就没用了          
+       return final_price
+       
+>>>old_price = float(input('pls input old price:')) --- 在函数外定义的，是全局变量。
+>>>rate = float(input('pls input the rate:'))
+>>>new_price = discount(old_price, rate)
+>>>print('modified old_price is:',old_price)
+>>>print('the price after discount:',final_price) --- 所有这里是找不到final_price的
+会报错，找不到final_price
+--------------------------------------------------------------------------------------------------------
+>>>def discount(price,rate):
+       final_price = price * rate                     
+       old_price = 88                            --- 函数内修改全局变量，python会创建一个名称相同的局部变量
+       print ('modified old_price is :',old_price)
+       return final_price
+>>>old_price = float(input('pls input old price:')） ---上面修改的old_price对这里的没有影响。
+>>>rate = float(input('pls input the rate:'))
+>>>new_price = discount(old_price, rate)
+>>>print('modified old_price is:',old_price)
+>>>print('the price after discount:',new_price)
+最好不要试图在函数内部修改全局变量。
+
+________________    
+### 第十四课 ###
+————————————————
+* 使用global关键字可以在函数修改全局变量
+
+--- 内嵌函数 ---
+>>>def fun1():
+       print('calling fun1')
+       def fun2():
+           print('calling fun2')
+       fun2()                    --- 在fun1内调用好fun2才能打印calling fun2；在fun1之外无法调用fun2
+>>>fun1()
+calling fun1
+calling fun2
+
+--- 闭包 ---
+>>> def funx(x):
+        def funy(y)
+            return x*y
+        return funy
+>>> i = funx(8)
+>>>i(5)
+40
+>>>type(i)
+<class 'function'>
+
+>>>funx(8)(5)
+40
+
+>>>def fun1():
+       x = 5
+       def fun2():
+           nonlocal x
+           x *= x
+           return x
+       return fun2()
+>>> fun1()
+25                  ---- nonlocal 关键字在这里把x申明为非局部变量
+
+——————————————
+### 第十五课 ###
+——————————————
+--- lambda表达式 ---
+用lambda关键字创建匿名函数
+>>> def ds(x):
+        return 2 * x + 1
+>>>ds(5)
+11
+
+lambda x: 2 * x + 1
+可以随便赋值
+g = lambda x: 2 * x + 1
+>>> g(5)
+11
+
+--- filter ---
+filter(function or none,iterable)   --- 迭代值当作函数的输入，把为ture的结果输入进一个list
+>>>list(fitler(None,[1,0,false,true]))
+[1,ture]
+
+*利用filter筛选基数
+>>>def odd(x):
+       return x % 2
+>>>temp = range (10)
+>>>show = filter(odd,temp)
+>>>list(show)
+1,3,5,7,9
+
+>>>list(filter(lambda x:x%2,range(10)))
+相同结果
+
+--- map ---
+映射
+>>>list(map(lambda x:x*2, range(10)))
+[0,2,4,6,8,10,12,14,16,18]
