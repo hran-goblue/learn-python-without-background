@@ -543,3 +543,24 @@ filter(function or none,iterable)   --- 迭代值当作函数的输入，把为t
 映射
 >>>list(map(lambda x:x*2, range(10)))
 [0,2,4,6,8,10,12,14,16,18]
+
+
+--- 递归 ---
+*设置递归深度
+>>>import sys
+>>>sys.setrecursionlimit(参数)
+*递归（函数套函数）
+>>>def factorial(n):   --- 求阶乘
+       if n == 1:
+          return 1
+       else:
+          return n*factorial(n-1)
+         
+
+
+
+
+
+
+
+
