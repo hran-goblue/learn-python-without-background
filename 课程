@@ -544,7 +544,9 @@ filter(function or none,iterable)   --- 迭代值当作函数的输入，把为t
 >>>list(map(lambda x:x*2, range(10)))
 [0,2,4,6,8,10,12,14,16,18]
 
-
+——————————————
+### 第十六课 ###
+——————————————
 --- 递归 ---
 *设置递归深度
 >>>import sys
@@ -555,12 +557,77 @@ filter(function or none,iterable)   --- 迭代值当作函数的输入，把为t
           return 1
        else:
           return n*factorial(n-1)
-         
+          
+——————————————
+### 第十七课 ###
+——————————————      
+--- 字典 ---
+*key - value
+>>>brand = ['lining','nike','addidas']
+>>>slogan= ['everything is possible','just do it'.'impossible is nothing']
+>>>slogan[brand.index('nike')]
+just do it
 
+*字典不是序列类型，是映射类型
+>>>dict1 = {'lining':'everything is possible','nike':'just do it','addidas':'impossible is nothing'}
+>>>dict1['nike']
+just do it
 
+>>>dict2 = dict((('F',70),('i',105),('s',115),('h',104),('c',67)))
+dict()函数只能有一个参数，所有这里有两层括号
+>>>dict2 = dict(F=70，i=105，s=115，h=104，c=67)
 
+*编辑key - value
+dict1['supreme']='very expensive'     ===  添加/修改 key- value
+*字典的方法
+dict.fromkeys(s[,v])  === 创建并返回新的字典。 s 是 key 的值， v 是value 的值
+>>>dict1 = {}
+>>>dict1.fromkeys((1,2,3))
+{1：None, 2:None, 3:None}
 
+>>>dict1.fromkeys((1,2,3),'numebr')
+{1：numebr, 2:numebr, 3:numebr}
 
+>>>dict1.fromkeys((1,2,3),('one','two','three'))
+{1：('one','two','three'), 2:('one','two','three'), 3:('one','two','three')}
 
+>>>dict1.fromkeys((1,3),'numebr')
+{1：numebr, 3:numebr}   === 会重新创建一个新的字典，而不是修改原有的字典
 
+dict1.clear()  === 清空字典
+dict1.keys()   === 返回所有key的值
+dict1.values() === 返回所有value值
+dict1.items()  === 返回所有key - value 值
+dict1.get()    === 返回索引值
+>>>dict1.get(dict['the north face'])             === 不存在这个值不会报错
+>>>ptint(dict1.get(dict['the north face']))
+None                                             === 实际上返回的是None
+dict.copy()  === 浅拷贝，会创建一个新的地址，和赋值不同
+>>>b={'小白'：'狗'}
+>>>a.update(b) 就会把{'小白'：'狗'}这个item添加到a中
+
+——————————————
+### 第十八课 ###
+—————————————— 
+--- 集合 ---
+>>>num = {}
+>>>type(num)
+<class 'dict'>
+>>>num2 = {1,2,3,4,5}
+>>>type(num2)
+<class 'set'>              ----  没有体现映射关系，就是集合
+
+>>>num2={1,2,3,4,4,5,5,}
+>>>num2
+{1,2,3,4,5}                       ---- 会清除重复元素
+num2[2]                           ---- 会报错，集合是无序的
+num3 = frozenset([1,2,3,4,5])     ---- 用了frozen后这个集合无法被改变
+
+——————————————
+### 第十八课 ###
+—————————————— 
+--- 文件 ---
+f = open('E:\\text','w')
+f.read()
+f.write()
 
