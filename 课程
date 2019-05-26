@@ -631,3 +631,87 @@ f = open('E:\\text','w')
 f.read()
 f.write()
 
+——————————————
+### 第十九课 ###
+—————————————— 
+--- 模块 ---
+>>>import random
+>>>secret = random.randint(1,10)
+
+通过import导入模块之后才可以使用模块下的各种方法
+
+——————————————
+### 第二十课 ###
+—————————————— 
+--- pickle模块 ---
+*存放为二进制字节流        pickling
+*读取(从二进制转换为对象)  unpickling
+
+>>>import pickle
+>>>mylist = [123,3.14,'fishc',['2nd list']]
+>>>pickle_file = open('mylist.pkl','wb')
+>>>pickle.dump(mylist,pickle_file)    === 把 mylist 放进 pickle_file 里
+>>>pickle_file.close()                === 关闭保存 pickle_file
+>>>pickle_file = load('mylist.pkl','rb') === 读取
+>>>print(mylist)
+[123,3.14,'fishc',['2nd list']]
+
+——————————————
+### 第二十一课 ###
+—————————————— 
+--- 异常处理 ---
+
+* 异常检测
+try:
+    检测范围
+except Exception [as reason]:
+    出现异常（exception）后的处理代码
+    
+>>>try:
+>>>   sum = 1 + '1'
+>>>   f= open('text.txt')
+>>>   print (f.read)
+>>>   f.close
+>>>except OSError as reason:
+>>>   print('文件出错,错误原因是：'，reason)
+>>>except TypeError as reason:
+>>>   print('类型出错,错误原因是：'，reason)
+文件出错，错误原因是：[Errno 2] No such file or directory:'text.txt'
+
+当出现相对应得错误时，才会执行except下的语句。
+当try语句下的内容出错，程序不会再执行try下的其他任何代码
+
+还可以写为 except (TypeError, OSError):
+
+try:
+    检测范围
+except Exception [as reason]:
+    出现异常（exception）后的处理代码
+finally:
+    无论如何也会被执行的代码
+
+>>>raise TypeError
+主动引出异常
+
+——————————————
+### 第二十一课 ###
+—————————————— 
+--- else ---
+>>>if else 条件判断
+>>>while 条件： 
+      循环内容
+   else:
+      循环内容全部执行完才会执行
+      如果break跳出则不会执行
+
+>>>try:
+       检测范围
+>>>except Exception [as reason]:
+       出现异常（exception）后的处理代码
+>>>else:
+        没有异常时执行的代码
+      
+--- with ---
+>>> with open('data.txt','w') as f:
+这样打开文件会自动调用 f.close()
+
