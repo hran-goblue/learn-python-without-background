@@ -693,9 +693,9 @@ finally:
 >>>raise TypeError
 主动引出异常
 
-——————————————
+——————————————————
 ### 第二十一课 ###
-—————————————— 
+——————————————————
 --- else ---
 >>>if else 条件判断
 >>>while 条件： 
@@ -714,4 +714,120 @@ finally:
 --- with ---
 >>> with open('data.txt','w') as f:
 这样打开文件会自动调用 f.close()
+
+——————————————————
+### 第二十二课 ###
+——————————————————
+--- 类和对象 ---
+*对象 = 属性 + 方法
+属性 --- 静态
+方法 --- 动态
+
+--- 类 ---
+>>>class Turtle: (类 大写开头)
+       #属性
+       color = ' green '
+       weight = 10
+       shell  = True
+       ...      ...
+       #方法
+       def climb(self):             --- self --- 相当于 this指针，房子的门牌号。
+           print('Im climbing')                  同一个类可以生成无数个对象，
+                                                 当一个对象的方法被调用的时候，
+                                                 对象会将自身作为第一个参数传给self，
+                                                 接收到self的时候python才知道是哪一个对象调用方法。
+        
+--- 类的实例化 ---
+>>>tt = Turtle()  === 类名（）=== 变成一个类对象
+
+--- Object Oriented ---
+特征：封装，继承，多态
+>>> class Mylist(list):      --- Mylist 继承了 list 的所有属性和方法
+        pass                 --- pass 占位符
+>>> class Fish:
+        __init__(self):
+            self.x = random(0,10)
+>>> class Shark(Fish):
+        __init__(self):
+        super().__init__() 或者 Fish.__init__()  才能继承父类的init方法。否则会被覆盖。
+
+--- 特殊方法 ---
+*双下划线包围
+>>>class Ball:
+        def __init__(self,name):
+            self.name = name
+        def kick (self):
+            print('who is kicking me')
+
+--- name mangling ---
+*变量前加双下划线，变成私有变量
+>>> class Person:                      --- 无法通过 p = Person()
+        __name = 'Fish'                            p.name 或者 p.__name 来获得变量
+>>> class Person:                      --- 只能通过调用内部函数来获得
+        __name = 'Fish'                            p=Person()
+        def getname(self):                         p.getname() 
+            return self.__name
+
+--- 组合 ---
+>>>class Turtle:
+        def __init__(self,x):
+            self.num = x
+>>>class FIsh:
+        def __init__(self,x):
+            self.num = x
+>>>class Pool:
+        def __init__(self, x, y):
+            self.turtle = Turtle(x)
+            self.fish   = Fish(y)
+        def print_num(self);
+            print('there is %d turtle and %d fish in this pool' %(self.turtle.num, self.fish.num))
+
+--- BIF ---
+*issubclass(class, classinfo) class是否是classinfo 的子类
+*isinstance(object,classinfo) 实例对象object是否属于一个类classindo
+*hasattr(object,name) object是否有属性name
+*getattr(object,name[,default]) 返回object的name属性，如果不存在则返回default
+*setattr(object,name,value) 设置
+*delattr(object,name) 删除
+*property (fget=None,fset = None, fdel = None, doc = None) 用属性设置属性
+>>>class C:
+      def __init__(self,size=10):
+          self.size = size
+      def getsize (self):
+          return self.size
+      def setsize (self):
+          self.size = value
+      def delsize(self):
+          del self.size
+      x = property(getsize, setsize, delsize)
+>>> c1 = C()
+>>> c1.x             自动调用 x = property 中的 getsize
+10
+>>>c1.x = 18         自动调用 x = property 中的 setsize
+18
+>>>del c1.x          自动调用 x = property 中的 delsize
+
+——————————————————
+### 第二十二课 ###
+——————————————————
+--- 魔法方法 ---
+*双下划线包围的方法，在合适的实际会被自动调用
+__init__(self[,...])   实例化对象时自动被调用；初始化构造方法，init下不能有任何返回
+__del__(self)          删除方法时会被自动调用；del操作时调用
+__str__(self)          需要打印时会被自动调用：打印出str方法下return值
+__repr__(self)         直接调用对象时会被调用：返回方法下的内容
+>>> class B():                           * 如果编辑__str__
+        def __repr__(self):               def __str__(self):
+            return 'Im a B'                   return  'Im a B'   
+>>> b = B()                           b = B()
+>>> b                                 print (b)    *这里需要print才能打印出结果
+Im a B
+
+__getattr__(self,name)           试图获取一个不存在的属性时
+__getattribute__(self,name)      该类的属性被访问时,不存在这个属性也会触发
+__setattr__(self,name)
+__delattr__(self,name)
+
+
+
 
