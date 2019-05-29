@@ -828,6 +828,72 @@ __getattribute__(self,name)      该类的属性被访问时,不存在这个属�
 __setattr__(self,name)
 __delattr__(self,name)
 
+——————————————————
+### 第二十三课 ###
+——————————————————
+--- 描述符 ---
+*将一个特殊类的实例指派给另一个类的属性
+*特殊类：含有 __get__, __set__, __delete__ 中至少一个的类
+>>>class MyDescriptor:
+      def __get__(self, instance, owner):
+          print('getting...',self, instance,owenr)
+      def __set__(self,instance, value):
+          print('setting...', self, instance, value)
+      def __delete__(self,instance):
+          print('deleting...', self, instance)
+>>> Test:
+    x = MyDescriptor ()         === MyDescriptor 在这里就是一个描述符
+>>>test = Test()
+>>>test.x
+getting...
+    
+--- --- 
+*args 可变参数量的变量
+def __init__(self,*args):
+    self.values = [x for x in args]
+
+--- 迭代器 ---
+>>>it = iter('FishC')
+>>>next(it)
+'F'
+>>>next(it)
+'i'
+
+对应的魔法方法：  __iter__()  /  __next__()
+
+--- 生成器 ---
+>>> def myGen():
+       print('生成器')   
+       yield 1               --- yeild, 返回后边的参数然后暂停，下次执行时从暂停处再开始
+       yield 2  
+
+>>> myG = myGen()
+>>>next(myyG)
+生成器
+1
+>>>next(myyG)
+2
+
+——————————————————
+### 第二十三课 ###
+——————————————————
+--- 模块 ---
+* if __name__ == ' __main__'
+让python知道是在主程序中巡行这个模块，还是在模块内部运行这个代码。
+一般放在模块中。
+>>> if __name__ == '__main__':
+        print('运行测试代码')
+        test()
+当主程序调用模块时，模块的测试段落不会运行。当模块自己运行时，测试段落会运行。
+
+--- 搜索路径 ---
+模块的导入需要一个路径搜索的过程 === 寻找 模块名.py 这个文件
+添加搜索路径:
+>>>sys.path.append('路径')
+
+--- 包 ---
+创建一个文件夹，将所有的模块.py放进去。创建一个__init__.py的空文件。
+这个文件夹就成为了一个包，可以被导入进python
 
 
 
