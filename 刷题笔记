@@ -72,4 +72,16 @@ continue语句的作用是终止本轮循环并开始下一轮循环（这里要
         Hello World!
     因为当Python执行到return语句的时候，Python认为函数到此结束，需要返回了（尽管没有任何返回值）。
     
-10.
+10.形式参数指的是函数创建和定义过程中小括号里的参数，而实际参数指的是函数在调用过程中传递进去的参数。
+
+11.
+>>> def hello():                ------------------    return 和 print  的区别。
+        print('Hello FishC!')
+        return 'hello FishC'
+
+>>> temp = hello()
+Hello FishC!
+>>> temp
+'hello FishC'
+
+12. 在函数内部修改全局变量用global，在（）嵌套函数中）内部函数修改外部函数的变量用nonlocal
