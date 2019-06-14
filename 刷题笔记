@@ -97,5 +97,23 @@ Hello FishC!
 
 答：frozenset()
 
+15. 字符串分割split(str = ‘ ’ ,[,num = -1]): str 分割符默认空格，num分割次数，默认-1（分割所有）
+
+16.
+try:
+        print('ABC')
+except:
+        print('DEF')
+else:
+        print('GHI')
+finally:
+        print('JKL')
+        
+答：只有 except 语句中的内容不被打印，因为 try 语句块中并没有异常，则 else 语句块也会被执行。cr{m}
+ABC
+GHI
+JKL
+
+
 
 
