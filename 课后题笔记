@@ -114,6 +114,71 @@ ABC
 GHI
 JKL
 
+16.如果我们不希望对象的属性或方法被外部直接引用，我们可以怎么做？类在实例化后哪个方法会被自动调用？
+    我们可以在属性或方法名字前边加上双下划线，这样子从外部是无法直接访问到，会显示AttributeError错误。
+    __init__方法会在类实例化时被自动调用，我们称之为魔法方法。你可以重写这个方法，为对象定制初始化方案。
+  
+17.TypeError: __init__() should return None
+    __init__() 方法不能返回任何东西
+
+18.假设已经有鸟类的定义，现在我要定义企鹅类继承于鸟类，但我们都知道企鹅是不会飞的，我们应该如何屏蔽父类（鸟类）中飞的方法？
+答：覆盖父类方法，例如将函数体内容写 pass，这样调用 fly 方法就没有任何反应了。
+class Bird:
+        def fly(self):
+                print("Fly away!")
+
+class Penguin(Bird):
+        def fly(self):
+                pass
+
+19.什么是组合（组成）？ 
+
+答：Python 继承机制很有用，但容易把代码复杂化以及依赖隐含继承。因此，经常的时候，我们可以使用组合来代替。在Python里组合其实很简单，直接在类定义中把需要的类放进去实例化就可以了。!RPp9u%s
+例子：
+// 乌龟类
+class Turtle:
+    def __init__(self, x):
+        self.num = x
+// 鱼类
+class Fish:
+    def __init__(self, x):
+        self.num = x
+// 水池类
+class Pool:
+    def __init__(self, x, y):
+        self.turtle = Turtle(x)        // 组合乌龟类进来
+        self.fish = Fish(y)        // 组合鱼类进来
+     
+    def print_num(self):
+        print("水池里总共有乌龟 %d 只，小鱼 %d 条！" % (self.turtle.num, self.fish.num))
+
+>>> pool = Pool(1, 10)
+>>> pool.print_num()
+
+20. 如果对象的属性跟方法名字相同，会怎样？
+答：如果对象的属性跟方法名相同，属性会覆盖方法
+
+21.请动手在一个类中定义一个变量，用于跟踪该类有多少个实例被创建（当实例化一个对象，这个变量+1，当销毁一个对象，这个变量自动-1）
+class C:
+        count = 0
+        def __init__(self):
+                C.count += 1             --- 注意这里一定要用类属性而不是实例s实例属性，类属性不会绑定到实例化对象。
+        def __del__(self):
+                C.count -= 1
+                
+22.其实 Python 的修饰符就是一种优雅的封装，但要注意的是只可以在模块或类定义内对函数进行修饰，不允许修饰一个类。
+一个修饰符就是一个函数，它将被修饰的函数做为参数，并返回修饰后的同名函数或其它可调用的东西。
+@something
+def f():
+    print("I love FishC.com!")
+    
+# 相当于
+
+def f():
+    print("I love FishC.com!")
+f = something(f)                
+
+23.
 
 
 
