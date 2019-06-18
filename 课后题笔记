@@ -206,6 +206,7 @@ class C:
         def nostatic(self):
                 print("I'm the f**king normal method!")
 静态方法并不需要 self 参数，因此即使是使用对象去访问，self 参数也不会传进去
+
 25.
 
 
