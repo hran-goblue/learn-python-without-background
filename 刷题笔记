@@ -7,7 +7,7 @@
    (1,3)
    ......
    (4,9)
-2.
-Python 字典(Dictionary) get() 函数返回指定键的值，如果值不在字典中返回默认值。
-get()方法语法：
-dict.get(key, default=None)
+2.Python 字典(Dictionary) get() 函数返回指定键的值，如果值不在字典中返回默认值。
+   get()方法语法：
+   dict.get(key, default=None)
+   如果一次性传入多个KEY，那么从左向右开始查找，返回第一个找到的值。
