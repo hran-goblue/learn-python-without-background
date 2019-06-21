@@ -11,3 +11,11 @@
    get()方法语法：
    dict.get(key, default=None)
    如果一次性传入多个KEY，那么从左向右开始查找，返回第一个找到的值。
+
+3. *星号的用法
+   >>>strs = ['flower','flow','flight']
+   >>> print(*strs)           ------ 没有星号的参数，会把列表作为参数传入到函数中
+   flower flow flight                1个星号的参数，会把列表的元素作为多个位置参数传入到函数中
+   >>> print(strs)                   2个星号的参数，可以当作多个关键字参数传入到函数中
+   ['flower', 'flow', 'flight']
+   
